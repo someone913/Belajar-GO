@@ -1,0 +1,48 @@
+# Compiled executables
+*.exe
+*.test
+*.out
+
+# Object files
+*.o
+*.a
+
+# Build artifacts
+/bin
+/dist
+/app
+
+# Dependency directories
+/vendor/
+/node_modules/
+
+# IDE and editor folders
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Environment files (keep example if needed)
+.env
+.env.*
+!.env.example
+
+# Go workspace files
+go.work
+go.work.sum
+
+# Test coverage files
+coverage.out
+cover.out
+*.coverprofile
+
+# Logs
+*.log
+
+# Miscellaneous
+*.swp
+*~
