@@ -57,11 +57,6 @@ Buat file `.env` di root project dengan isi:
 DATABASE_URL=postgresql://user:password@host:port/dbname?sslmode=require
 ```
 
-> Contoh untuk Neon (sudah tersedia di project ini):
-> ```env
-> DATABASE_URL=postgresql://neondb_owner:npg_xxx@ep-xxx.c-xxx.aws.neon.tech/neondb?sslmode=require&channel_binding=require
-> ```
-
 Pastikan database dan tabel `todos` sudah dibuat sebelum menjalankan aplikasi.
 
 ### 4. Membuat tabel di PostgreSQL
