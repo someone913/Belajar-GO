@@ -1,38 +1,12 @@
 package main
 
-// import "github.com/gin-gonic/gin"
-
-// func Ping(c *gin.Context) { //c context
-// 	number := c.Query("number")
-// 	c.JSON(200, gin.H{"message": "Pong" + number})
-// }
-
-// func Hello(c *gin.Context) {
-// 	c.JSON(200, gin.H{"message": "Hai"})
-// }
-
-// func Helo(c *gin.Context) {
-// 	name := c.Param("name")
-// 	c.JSON(200, gin.H{"message": "Hai" + name})
-// }
-
-// func main() { // r route
-// 	r := gin.Default()
-
-// 	r.GET("/ping", Ping)
-
-// 	r.GET("/name/:name", Helo)
-
-// 	r.GET("/hello", Hello)
-
-// 	r.Run(":8080")
-// }
-
 import (
 	"fmt"
+	"log"
+
 	"go_gin_test/database"
 	"go_gin_test/router"
-	"log"
+	"go_gin_test/todo"
 )
 
 func main() {
@@ -40,8 +14,14 @@ func main() {
 	if err != nil {
 		log.Fatal("Gagal terhubung ke database: ", err)
 	}
-	defer db.Close()
+	sqlDB, _ := db.DB()
+	defer sqlDB.Close()
 	fmt.Println("✅ Terhubung ke database PostgreSQL")
+
+	// AutoMigrate: membuat tabel todos jika belum ada, atau menambah kolom yang kurang
+	if err := db.AutoMigrate(&todo.Todo{}); err != nil {
+		log.Fatal("Gagal migrasi database: ", err)
+	}
 
 	r := router.SetupRouter(db)
 
